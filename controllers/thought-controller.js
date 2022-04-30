@@ -26,18 +26,15 @@ const thoughtController = {
             select: '-__v'
         })
         .select('-__v')
-        .then(dbThoughtData => {
-            if(!dbThoughtData) {
-            res.status(404).json({message: 'No thoughts has been found with this id!'});
-            return;
-            }
-            res.json(dbThoughtData)
-        })
-        .catch(err => res.json(err));
+        .then(dbThoughtData => {res.json(dbThoughtData))
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(400);
+        });
     },
 
-     //create a thought for an user.
-     createThought({ params, body }, res) {
+     //add a thought for an user.
+    createThought({ params, body }, res) {
         console.log(body);
         Thought.create(body)
         .then(({ _id }) => {
@@ -58,7 +55,7 @@ const thoughtController = {
     },
 
     //update a thought by id.
-    updateThought({params, body}, res) {
+    updateThought({ params, body }, res) {
         Thought.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
         .populate({path: 'reactions', select: '-__v'})
         .select('-___v')
