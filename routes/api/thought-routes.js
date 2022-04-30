@@ -28,10 +28,8 @@ router.route('/:userId')
     router.route('/:thoughtId/reactions')
     .post(addReaction);
 
-//Directs to the path /api/thoughts/:thoughtId/reactionId.
-//This deletes a reaction.
+//delete a reaction of a certain thought
 router.route('/:thoughtId/reactions/:reactionId')
     .delete(deleteReaction);
 
-//Export module router
 module.exports = router;
