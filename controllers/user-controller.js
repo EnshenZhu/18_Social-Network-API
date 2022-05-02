@@ -52,7 +52,7 @@ const userController = {
         User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
         .then(dbUsersData => {
             if(!dbUsersData) {
-                res.status(404).json({message: 'No user found with this id!'});
+                res.status(404).json({message: 'The user with this id cannot be found!'});
                 return;
             }
             res.json(dbUsersData);
@@ -93,7 +93,7 @@ const userController = {
         .select('-__v')
         .then(dbUsersData => {
             if (!dbUsersData) {
-                res.status(404).json({message: 'No user found with this id!'});
+                res.status(404).json({message: 'The user with this id cannot be found!'});
                 return;
             }
         res.json(dbUsersData);
@@ -108,7 +108,7 @@ const userController = {
         .select('-__v')
         .then(dbUsersData => {
             if(!dbUsersData) {
-                res.status(404).json({message: 'No friend found with this id!'});
+                res.status(404).json({message: 'The friend with this id cannot be found!'});
                 return;
             }
             res.json(dbUsersData);
