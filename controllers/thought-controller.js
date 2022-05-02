@@ -26,7 +26,7 @@ const thoughtController = {
             select: '-__v'
         })
         .select('-__v')
-        .then(dbThoughtData => {res.json(dbThoughtData))
+        .then(dbThoughtData => {res.json(dbThoughtData)})
         .catch(err => {
             console.log(err);
             res.sendStatus(400);
@@ -34,7 +34,7 @@ const thoughtController = {
     },
 
      //add a thought for an user.
-    createThought({ params, body }, res) {
+    addThought({ params, body }, res) {
         console.log(body);
         Thought.create(body)
         .then(({ _id }) => {
@@ -54,14 +54,14 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
 
-    //update a thought by id.
+    // update a thought by id.
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
         .populate({path: 'reactions', select: '-__v'})
         .select('-___v')
         .then(dbThoughtData => {
             if (!dbThoughtData) {
-                res.status(404).json({message: 'No thoughts found with this id!'});
+                res.status(404).json({message: 'No thought found with this id!'});
                 return;
             }
                 res.json(dbThoughtData);
@@ -74,7 +74,7 @@ const thoughtController = {
         Thought.findOneAndDelete({_id: params.id})
         .then(dbThoughtData => {
             if (!dbThoughtData) {
-                res.status(404).json({message: 'No thoughts found with this id!'});
+                res.status(404).json({message: 'No thought found with this id!'});
                 return;
             }
             res.json(dbThoughtData);
@@ -89,7 +89,7 @@ const thoughtController = {
         .select('-__v')
         .then(dbThoughtData => {
         if (!dbThoughtData) {
-            res.status(404).json({message: 'No thoughts found with this id!'});
+            res.status(404).json({message: 'No thought found with this id!'});
             return;
         }
         res.json(dbThoughtData);
@@ -112,5 +112,4 @@ const thoughtController = {
     }
 };
 
-//Export module thought controller.
 module.exports = thoughtController;

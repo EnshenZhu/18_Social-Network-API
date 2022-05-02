@@ -1,4 +1,3 @@
-//Require Mongoose.
 const { Schema, model } = require('mongoose');
 
 //User Shcema.
@@ -32,7 +31,6 @@ const UserSchema = new Schema(
     id: false
     }
 )
-
 
 UserSchema.virtual('thoughtCount').get(function() {
     return this.thoughts.length;

@@ -65,7 +65,7 @@ const userController = {
         User.findOneAndDelete({ _id: params.id })
         .then(dbUsersData => res.json(dbUsersData))
         .then( async dbUserData => {
-            await Thought.deleteMany({username: dbUserData._id}) //delete related thoughts.
+            await Thought.deleteMany({username: dbUserData._id}) //delete related thought.
             await User.updateMany({ //delete from related friend lists.
                 _id: {
                     $in: dbUserData.friends
@@ -75,7 +75,7 @@ const userController = {
                     friends: params.userId
                 }
             })
-            res.json({message: "The user and the related thoughts are deleted"})
+            res.json({message: "The user and the related thought are deleted"})
         })
 
         .catch(err => {
