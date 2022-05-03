@@ -61,30 +61,36 @@ const userController = {
     },
 
     //delete a user
-    deleteUser({ params }, res) {
-        User.findOneAndDelete({ _id: params.id })
-        .then(dbUsersData => res.json(dbUsersData))
+    deleteUser({params}, res) {
+        User.findOneAndDelete({_id: params.id})
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'The user with this id cannot be found!'});
+                return;
+            }
+            return dbUserData;
+        })
         .then( async dbUserData => {
-            await Thought.deleteMany({username: dbUserData._id}) //delete related thought.
-            await User.updateMany({ //delete from related friend lists.
+            await Thought.deleteMany({username: dbUserData._id})
+            await User.updateMany({
                 _id: {
                     $in: dbUserData.friends
                 }
-            }, {
+            }, 
+            {
                 $pull: {
                     friends: params.userId
                 }
             })
-            res.json({message: "The user and the related thought are deleted"})
+            res.json({message: "Both user and the related thoughts are deleted!"})
         })
-
         .catch(err => {
             res.status(400).json(err);
         })
     },
 
     //add a friend to user by id.
-    addFriend({params}, res) {
+    addFriend({ params }, res) {
         User.findOneAndUpdate({ _id: params.id }, {$push: { friends: params.friendId }}, {new: true})
         .populate({
             path: 'friends',
