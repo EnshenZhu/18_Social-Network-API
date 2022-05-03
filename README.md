@@ -14,7 +14,9 @@ This project is going to build up a social network api by using one of teh NoSQL
 
 * Start the server, get all users and all thoughts
 
-https://user-images.githubusercontent.com/22375165/166389770-af3b5a17-7f13-45c6-b41e-e61e4781b5dd.mp4
+https://user-images.githubusercontent.com/22375165/166394065-867cdbac-2605-4ba2-a88a-5d7ce311f0d6.mp4
+
+https://user-images.githubusercontent.com/22375165/166394069-e6c09176-7df4-489d-8feb-b42390fb8525.mp4
 
 * GET routes for a single user and a single thought
 
