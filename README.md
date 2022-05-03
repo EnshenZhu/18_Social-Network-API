@@ -11,4 +11,5 @@ This project is going to build up a social network api by using one of teh NoSQL
 * WHEN I test API POST and DELETE routes in Insomnia, THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 
 ## Video Demo
-### [Start the server, get all users and all thoughts](.\video\capture1.mp4)
+### Start the server, get all users and all thoughts
+https://github.com/EnshenZhu/18_Social-Network-API/blob/main/video/capture1.mp4
