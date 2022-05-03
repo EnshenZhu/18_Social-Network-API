@@ -13,7 +13,7 @@ This project is going to build up a social network api by using one of teh NoSQL
 ## Video Demo
 
 ### Start the server, get all users and all thoughts
-<video controls width="800" src=".\video\capture1.mp4"></video>
+![](.\video\capture1.mp4)
 
 ### GET routes for a single user and a single thought
 <video controls width="800" src=".\video\capture2.mp4"></video>
